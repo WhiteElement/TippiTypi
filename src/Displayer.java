@@ -43,7 +43,11 @@ public class Displayer {
                         //TODO handle last word
 
                         //update the label
-                        label.setText(getCurrentText());
+                        if (getCurrentText().isEmpty()) {
+                            label.setText("FINISHED");
+                        } else {
+                            label.setText(getCurrentText());
+                        }
 
                         //reset textfield
                         textField.setText(null);
@@ -67,15 +71,13 @@ public class Displayer {
     }
 
     public void trimFirstWord() {
-        String replace = this.currentText.replaceFirst(
-                String.format("%s ", this.getCurrentWord()), "");
-        this.currentText = replace;
+        // word
+        this.currentText = this.currentText.replaceFirst(this.getCurrentWord(), "");
+        // corresponding space after
+        this.currentText = this.currentText.replaceFirst(" ", "");
     }
 
     public JTextField getTextField() {
         return this.textField;
-    }
-    public void setTextField(JTextField textField) {
-        this.textField = textField;
     }
 }

@@ -1,19 +1,23 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import static BraunAssertions.BraunAssert.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         
-        //later function that grabs from file or lets you choose
-        String totalText = "das ist der Text";
+        var path = Path.of("src/input.txt");
+        String totalText = Files.readString(path, StandardCharsets.UTF_8);
         
         var frame = new JFrame();
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setMaximumSize(new Dimension(800, 600));
-        frame.setLayout(new GridLayout(2, 1));
+        frame.setLayout(new GridLayout(2, 3));
         
         var label = new JLabel();
         label.setSize(200,100);
